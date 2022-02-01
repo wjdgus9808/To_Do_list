@@ -16,12 +16,13 @@ function ToDo({ text, category, id }: IToDo) {
   const Delete = () => {
     setToDos((oldToDos) => {
       const targetIndex = oldToDos.findIndex((toDo) => toDo.id === id);
-
-      const oldToDo = oldToDos[targetIndex];
-      return [
+      const newAry = [
         ...oldToDos.slice(0, targetIndex),
         ...oldToDos.slice(targetIndex + 1),
       ];
+      localStorage.setItem("ToDos", JSON.stringify(newAry));
+      const oldToDo = oldToDos[targetIndex];
+      return newAry;
     });
   };
   const onClick = (newCategory: IToDo["category"]) => {
