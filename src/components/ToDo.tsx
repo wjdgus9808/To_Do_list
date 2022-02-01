@@ -20,7 +20,7 @@ function ToDo({ text, category, id }: IToDo) {
         ...oldToDos.slice(0, targetIndex),
         ...oldToDos.slice(targetIndex + 1),
       ];
-      localStorage.setItem("ToDos", JSON.stringify(newAry));
+
       const oldToDo = oldToDos[targetIndex];
       return newAry;
     });
@@ -33,11 +33,13 @@ function ToDo({ text, category, id }: IToDo) {
       console.log(newCat);
       const oldToDo = oldToDos[targetIndex];
       console.log(oldToDo);
-      return [
+      const newAry = [
         ...oldToDos.slice(0, targetIndex),
         newCat,
         ...oldToDos.slice(targetIndex + 1),
       ];
+      localStorage.setItem("ToDos", JSON.stringify(newAry));
+      return newAry;
     });
   };
   return (
